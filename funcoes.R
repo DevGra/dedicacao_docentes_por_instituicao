@@ -1,4 +1,5 @@
 library(stringr)
+
 rm_accent <- function(str,pattern="all") {
   # Rotinas e funções úteis V 1.0
   # rm.accent - REMOVE ACENTOS DE PALAVRAS
@@ -60,6 +61,15 @@ ajustar_nomes=function(x){
     stringr::str_replace_all("_+", "_") %>%        #Substitui os caracteres especiais por "_"   
     stringr::str_replace("_$", "")                 #Substitui o caracter especiais por " "
 }
+
+# ------------------- função que agraga as outras duas acima para remover acento e substituir acentos
+#-------------------- e caracteres especiais e as converte em minúculas.
+
+rm_acento_espaco = function(str) {
+  return(ajustar_nomes(str) %>% rm_accent())
+}
+
+
 
 # -------------------------- funcão para normalizar as palavras da grande area ---------
 # retorna um dataframe com a grande area e seus valores

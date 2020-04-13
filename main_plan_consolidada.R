@@ -18,19 +18,19 @@ USP_plan <- read.xlsx(xlsxFile = arquivo, sheet = 6, colNames = TRUE, startRow =
 
 
 # retira o ponto(.) e substitui por underline(_)
-names(UFABC_plan) <- names(UFABC_plan) %>% ajustar_nomes() %>% rm_accent()
-names(UFSCar_plan) <- names(UFSCar_plan) %>% ajustar_nomes() %>% rm_accent()
-names(UNESP_plan) <- names(UNESP_plan) %>% ajustar_nomes() %>% rm_accent()
-names(UNIFESP_plan) <- names(UNIFESP_plan) %>% ajustar_nomes() %>% rm_accent()
-names(UNICAMP_plan) <- names(UNICAMP_plan) %>% ajustar_nomes() %>% rm_accent()
-names(USP_plan) <- names(USP_plan) %>% ajustar_nomes() %>% rm_accent()
+names(UFABC_plan) <- names(UFABC_plan) %>% rm_acento_espaco()
+names(UFSCar_plan) <- names(UFSCar_plan) %>% rm_acento_espaco()
+names(UNESP_plan) <- names(UNESP_plan) %>% rm_acento_espaco()
+names(UNIFESP_plan) <- names(UNIFESP_plan) %>% rm_acento_espaco()
+names(UNICAMP_plan) <- names(UNICAMP_plan) %>% rm_acento_espaco()
+names(USP_plan) <- names(USP_plan) %>% rm_acento_espaco()
 
 #------------------- GRANDES AREAS ---------------------------------------
 
 plan <- UFABC_plan %>% add_row(grande_area = "Linguística, Letras e Artes")
 fac_ufabc <- factor(plan$grande_area)
 todas_grandes_areas <- levels(fac_ufabc)
-todas_grandes_areas <- todas_grandes_areas %>% ajustar_nomes() %>% rm_accent()
+todas_grandes_areas <- todas_grandes_areas %>% rm_acento_espaco()
 
 # ----------------------- UFABC -------------------------------------------
 
