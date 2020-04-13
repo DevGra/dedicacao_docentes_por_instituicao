@@ -201,12 +201,6 @@ df_unifesp_merged <- df_merg_unifesp[temp,]
 df_unifesp_merged$soma_parc <- df_unifesp_merged$soma_parc  %>%
   replace_na(0)
 
-# df_merg <- merge(unifesp_total, unifesp_parc, by.x = "grande_area", all.x = TRUE )
-# new_order <- sapply(todas_grandes_areas, function(x,df_merg){which(df_merg$grande_area == x)}, df_merg=df_merg)
-# df_merg <- df_merg[new_order,]
-# ------ modelo------ 
-# new_order <- sapply(target, function(x,df){which(df$name == x)}, df=df)
-# df        <- df[new_order,]
 
 # ---- UNICAMP -------------------
 # OK
