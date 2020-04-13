@@ -1,30 +1,30 @@
 library(stringr)
 
 rm_accent <- function(str,pattern="all") {
-  # Rotinas e funÁıes ˙teis V 1.0
+  # Rotinas e fun√ß√µes √∫teis V 1.0
   # rm.accent - REMOVE ACENTOS DE PALAVRAS
-  # FunÁ„o que tira todos os acentos e pontuaÁıes de um vetor de strings.
-  # Par‚metros:
-  # str - vetor de strings que ter„o seus acentos retirados.
-  # patterns - vetor de strings com um ou mais elementos indicando quais acentos dever„o ser retirados.
-  #            Para indicar quais acentos dever„o ser retirados, um vetor com os sÌmbolos dever„o ser passados.
-  #            Exemplo: pattern = c("¥", "^") retirar· os acentos agudos e circunflexos apenas.
-  #            Outras palavras aceitas: "all" (retira todos os acentos, que s„o "¥", "`", "^", "~", "®", "Á")
+  # Fun√ß√£o que tira todos os acentos e pontua√ß√µes de um vetor de strings.
+  # Par√¢metros:
+  # str - vetor de strings que ter√£o seus acentos retirados.
+  # patterns - vetor de strings com um ou mais elementos indicando quais acentos dever√£o ser retirados.
+  #            Para indicar quais acentos dever√£o ser retirados, um vetor com os s√≠mbolos dever√£o ser passados.
+  #            Exemplo: pattern = c("¬¥", "^") retirar√° os acentos agudos e circunflexos apenas.
+  #            Outras palavras aceitas: "all" (retira todos os acentos, que s√£o "¬¥", "`", "^", "~", "¬®", "√ß")
   if(!is.character(str))
     str <- as.character(str)
   
   pattern <- unique(pattern)
   
-  if(any(pattern=="«"))
-    pattern[pattern=="«"] <- "Á"
+  if(any(pattern=="√á"))
+    pattern[pattern=="√á"] <- "√ß"
   
   symbols <- c(
-    acute = "·ÈÌÛ˙¡…Õ”⁄˝›",
-    grave = "‡ËÏÚ˘¿»Ã“Ÿ",
-    circunflex = "‚ÍÓÙ˚¬ Œ‘€",
-    tilde = "„ı√’Ò—",
-    umlaut = "‰ÎÔˆ¸ƒÀœ÷‹ˇ",
-    cedil = "Á«"
+    acute = "√°√©√≠√≥√∫√Å√â√ç√ì√ö√Ω√ù",
+    grave = "√†√®√¨√≤√π√Ä√à√å√í√ô",
+    circunflex = "√¢√™√Æ√¥√ª√Ç√ä√é√î√õ",
+    tilde = "√£√µ√É√ï√±√ë",
+    umlaut = "√§√´√Ø√∂√º√Ñ√ã√è√ñ√ú√ø",
+    cedil = "√ß√á"
   )
   
   nudeSymbols <- c(
@@ -36,7 +36,7 @@ rm_accent <- function(str,pattern="all") {
     cedil = "cC"
   )
   
-  accentTypes <- c("¥","`","^","~","®","Á")
+  accentTypes <- c("¬¥","`","^","~","¬®","√ß")
   
   if(any(c("all","al","a","todos","t","to","tod","todo")%in%pattern)) # opcao retirar todos
     return(chartr(paste(symbols, collapse=""), paste(nudeSymbols, collapse=""), str))
@@ -47,10 +47,10 @@ rm_accent <- function(str,pattern="all") {
   return(str)
 }
 
-#nomes=c('Anivers·rio', 'FÕSICO', 'SituaÁ„o', 'RaÁa', 'IMC', 'Tipo fÌsico', 'tabaco por dia (cig/dia)')
+#nomes=c('Anivers√°rio', 'F√çSICO', 'Situa√ß√£o', 'Ra√ßa', 'IMC', 'Tipo f√≠sico', 'tabaco por dia (cig/dia)')
 #rm_accent(nomes)
 
-#------------ fucao para remover espaÁos, caracter especial e converte para minusculo --------------
+#------------ funcao para remover espa√ßos, caracteres especiais e convert√™-los para min√∫sculo --------------
 
 ajustar_nomes=function(x){
   x%>%
@@ -62,16 +62,15 @@ ajustar_nomes=function(x){
     stringr::str_replace("_$", "")                 #Substitui o caracter especiais por " "
 }
 
-# ------------------- funÁ„o que agraga as outras duas acima para remover acento e substituir acentos
-#-------------------- e caracteres especiais e as converte em min˙culas.
+# ------------------- fun√ß√£o que agrega as outras duas acima para remover acento e substituir espa√ßos
+#-------------------- e caracteres especiais e as converter em min√∫sculas.
 
 rm_acento_espaco = function(str) {
   return(ajustar_nomes(str) %>% rm_accent())
 }
 
 
-
-# -------------------------- func„o para normalizar as palavras da grande area ---------
+# -------------------------- func√£o para normalizar as grandes areas ---------
 # retorna um dataframe com a grande area e seus valores
 
 funcoes_norm_text <- function(val) {
@@ -90,7 +89,7 @@ funcoes_norm_text <- function(val) {
   return(df)
 }
 
-# --------- funÁ„o que recebe um alista de dataframes e passa cada um deles a funcao - funcoes_norm_text
+# --------- fun√ß√£o que recebe um alista de dataframes e passa cada um deles a funcao - funcoes_norm_text
 
 normalizar_variavel <- function(lista = list()) {
   #print(lista)
@@ -100,13 +99,12 @@ normalizar_variavel <- function(lista = list()) {
 }
 
 
-# --------------------    funcao para verificar quais linhas est„o faltando em comparacao 
-# -------------------- com a quantidade totla de grandes areas ----------------------------------
+# --------------------    funcao para verificar quais linhas est√£o faltando em comparacao 
+# -------------------- com a quantidade total de grandes areas ----------------------------------
 
 diferenca <- function(x) {
   ga <- todas_grandes_areas
   ga_rest <- setdiff(ga, levels(factor(x$grande_area)))
-  #setdiff(levels(factor1), levels(factor2))
   return(ga_rest)
 }
 
